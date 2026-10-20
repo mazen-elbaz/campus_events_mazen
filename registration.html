@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+    <input type="checkbox" id="theme-toggle" class="theme-toggle">
     <header>
         <p class="site-name"><a href="index.html">Campus Events Guide</a></p>
         <nav aria-label="Main">
@@ -18,11 +19,112 @@
                 <li><a aria-current="page" href="registration.html">Registration</a></li>
             </ul>
         </nav>
+        <label for="theme-toggle" class="theme-label">Dark mode</label>
     </header>
     <main>
-        <h1>Registration</h1>
-    </main>
+        <h1>Register for Campus Hack Day 2026</h1>
+        <ul class="event-meta">
+            <li><time datetime="2026-11-14">Saturday, 14 November 2026</time></li>
+            <li>10:00 – 18:00</li>
+            <li>Innovation Hall, Main Campus</li>
+        </ul>
 
+        <form action="#" method="get">
+            <fieldset>
+                <legend>Attendee details</legend>
+                <div>
+                    <label for="full-name">Full name</label>
+                    <input type="text" id="full-name" name="full_name" required minlength="3" maxlength="60" pattern="[A-Za-z\u0621-\u064A ]{3,60}" title="3 to 60 letters (English or Arabic) and spaces" autocomplete="name">
+                </div>
+                <div>
+                    <label for="student-id">Student ID</label>
+                    <input type="text" id="student-id" name="student_id" required maxlength="10" pattern="[0-9]{6,10}" inputmode="numeric" title="6 to 10 digits">
+                </div>
+                <div>
+                    <label for="email">University email</label>
+                    <input type="email" id="email" name="email" required maxlength="100" autocomplete="email">
+                </div>
+                <div>
+                    <label for="portfolio">Portfolio or LinkedIn link (optional)</label>
+                    <input type="url" id="portfolio" name="portfolio" placeholder="https://" maxlength="200">
+                </div>
+            </fieldset>
+
+            <fieldset>
+                <legend>Your Hack Day plan</legend>
+                <div>
+                    <label for="track">Choose your track</label>
+                    <select id="track" name="track" required>
+                        <option value="" disabled selected>Select a track</option>
+                        <option value="ai">AI and data</option>
+                        <option value="web">Web and mobile apps</option>
+                        <option value="security">Cybersecurity challenges</option>
+                        <option value="open">Open track</option>
+                    </select>
+                </div>
+                <div>
+                    <label for="team-size">Team size (1 to 4)</label>
+                    <input type="number" id="team-size" name="team_size" min="1" max="4" value="1" required>
+                </div>
+                <div>
+                    <label for="arrival-time">Expected arrival time (09:30 to 12:00)</label>
+                    <input type="time" id="arrival-time" name="arrival_time" min="09:30" max="12:00" required>
+                </div>
+                <div>
+                    <label for="reminder-date">Send my reminder on</label>
+                    <input type="date" id="reminder-date" name="reminder_date" min="2026-10-21" max="2026-11-13">
+                </div>
+                <div>
+                    <label for="experience">Programming experience (1 beginner, 5 advanced)</label>
+                    <input type="range" id="experience" name="experience" min="1" max="5" value="3">
+                </div>
+                <div>
+                    <label for="shirt-color">Team T-shirt color</label>
+                    <input type="color" id="shirt-color" name="shirt_color" value="#0b6e6e">
+                </div>
+            </fieldset>
+
+            <fieldset>
+                <legend>Ticket and access</legend>
+                <fieldset class="choice-group full">
+                    <legend>Ticket type</legend>
+                    <label class="choice"><input type="radio" name="ticket" value="student" required> Student (free)</label>
+                    <label class="choice"><input type="radio" name="ticket" value="guest"> Guest (100 EGP)</label>
+                </fieldset>
+                <fieldset class="choice-group full">
+                    <legend>Access needs</legend>
+                    <label class="choice"><input type="checkbox" name="access" value="wheelchair"> Wheelchair access</label>
+                    <label class="choice"><input type="checkbox" name="access" value="sign-language"> Sign language interpreter</label>
+                    <label class="choice"><input type="checkbox" name="access" value="quiet-space"> Quiet space</label>
+                </fieldset>
+                <div class="full">
+                    <label for="id-photo">Upload a photo of your student ID</label>
+                    <input type="file" id="id-photo" name="id_photo" accept="image/*,.pdf" required>
+                </div>
+                <div class="full">
+                    <label for="notes">Anything else we should know?</label>
+                    <textarea id="notes" name="notes" rows="4" maxlength="300"></textarea>
+                </div>
+                <label class="choice full">
+                    <input type="checkbox" name="conduct" required> I agree to follow the event code of conduct
+                </label>
+            </fieldset>
+
+            <div class="form-actions">
+                <button type="submit" class="btn">Submit registration</button>
+                <button type="reset" class="btn btn-secondary">Clear form</button>
+            </div>
+        </form>
+
+        <section class="panel" aria-labelledby="contact-heading">
+            <h2 id="contact-heading">Event contact</h2>
+            <address>
+                Campus Events Office<br>
+                Email: <a href="mailto:events@campus-events-guide.example">events@campus-events-guide.example</a><br>
+                Phone: <a href="tel:+201000000000">+20 100 000 0000</a>
+            </address>
+        </section>
+    </main>
     <footer>
         <p>&copy; 2026 Campus Events Guide. All rights reserved.</p>
         <ul>

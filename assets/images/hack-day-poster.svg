@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" role="img" aria-label="Campus Hack Day 2026 poster">
+    <rect width="800" height="600" fill="#6e0b0b"/>
+    <circle cx="660" cy="110" r="150" fill="#ffffff" opacity="0.12"/>
+    <rect x="60" y="380" width="680" height="6" fill="#f2c14e"/>
+    <text x="60" y="250" font-family="Georgia, serif" font-size="68" font-weight="700" fill="#ffffff">Campus Hack Day</text>
+    <text x="60" y="325" font-family="Georgia, serif" font-size="40" fill="#ffffff">14 November 2026</text>
+    <text x="60" y="450" font-family="Arial, sans-serif" font-size="30" fill="#ffffff">Innovation Hall, Main Campus</text>
+</svg>

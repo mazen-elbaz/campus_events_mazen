@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+    <input type="checkbox" id="theme-toggle" class="theme-toggle">
     <header>
         <p class="site-name"><a href="index.html">Campus Events Guide</a></p>
         <nav aria-label="Main">
@@ -18,9 +19,95 @@
                 <li><a href="registration.html">Registration</a></li>
             </ul>
         </nav>
+        <label for="theme-toggle" class="theme-label">Dark mode</label>
     </header>
     <main>
-        <h1>What is this event about?</h1>
+        <h1>Campus Hack Day 2026</h1>
+
+        <section class="event-overview" aria-labelledby="overview-heading">
+            <img src="assets/images/hack-day-poster.svg" alt="Poster for Campus Hack Day 2026 showing the date and venue on a teal background">
+            <div>
+                <h2 id="overview-heading">About the event</h2>
+                <p>A full day of building. Form a team of up to four, pick a track, and turn an idea into a working prototype. Mentors from the university and local companies will review your progress and judge the final demos.</p>
+                <ul class="event-meta">
+                    <li><strong>Date:</strong> <time datetime="2026-11-14">Saturday, 14 November 2026</time></li>
+                    <li><strong>Time:</strong> 10:00 – 18:00</li>
+                    <li><strong>Venue:</strong> Innovation Hall, Main Campus</li>
+                    <li><strong>Category:</strong> Technology</li>
+                </ul>
+                <a class="btn" href="registration.html">Register now</a>
+            </div>
+        </section>
+
+        <section aria-labelledby="agenda-heading">
+            <h2 id="agenda-heading">Agenda</h2>
+            <ol class="agenda">
+                <li><time datetime="10:00">10:00</time> Check-in and breakfast</li>
+                <li><time datetime="10:30">10:30</time> Opening keynote</li>
+                <li><time datetime="11:00">11:00</time> Hacking starts</li>
+                <li><time datetime="13:00">13:00</time> Lunch break</li>
+                <li><time datetime="15:00">15:00</time> Mentor checkpoint</li>
+                <li><time datetime="16:30">16:30</time> Final demos</li>
+                <li><time datetime="17:30">17:30</time> Awards and closing</li>
+            </ol>
+        </section>
+
+        <section aria-labelledby="ticket-heading">
+            <h2 id="ticket-heading">Tickets and entry</h2>
+            <dl>
+                <dt>Students</dt>
+                <dd>Free with a valid university ID</dd>
+                <dt>Guests</dt>
+                <dd>100 EGP at the door</dd>
+                <dt>Capacity</dt>
+                <dd>150 participants</dd>
+                <dt>Registration closes</dt>
+                <dd>Friday, 13 November 2026</dd>
+            </dl>
+        </section>
+
+        <section aria-labelledby="media-heading">
+            <h2 id="media-heading">Watch the promo</h2>
+            <video controls preload="metadata" poster="assets/images/hack-day-poster.svg">
+                <source src="assets/media/hack-day-promo.mp4" type="video/mp4">
+                <p>Your browser cannot play this video. <a href="assets/media/hack-day-promo.mp4">Download it instead</a>.</p>
+            </video>
+        </section>
+
+        <section aria-labelledby="review-heading">
+            <h2 id="review-heading">Review this event</h2>
+            <form action="#" method="get">
+                <fieldset>
+                    <legend>Your review</legend>
+                    <div>
+                        <label for="reviewer-name">Your name</label>
+                        <input type="text" id="reviewer-name" name="reviewer_name" required maxlength="60" autocomplete="name">
+                    </div>
+                    <div>
+                        <label for="rating">Rating</label>
+                        <select id="rating" name="rating" required>
+                            <option value="" disabled selected>Choose a rating</option>
+                            <option value="5">5 - Excellent</option>
+                            <option value="4">4 - Good</option>
+                            <option value="3">3 - Average</option>
+                            <option value="2">2 - Poor</option>
+                            <option value="1">1 - Very poor</option>
+                        </select>
+                    </div>
+                    <div class="full">
+                        <label for="review-text">Your review</label>
+                        <textarea id="review-text" name="review" rows="4" required minlength="10" maxlength="500"></textarea>
+                    </div>
+                    <div class="full">
+                        <label for="review-photo">Add a photo (optional)</label>
+                        <input type="file" id="review-photo" name="review_photo" accept="image/*">
+                    </div>
+                </fieldset>
+                <div class="form-actions">
+                    <button type="submit" class="btn">Send review</button>
+                </div>
+            </form>
+        </section>
     </main>
 
     <footer>

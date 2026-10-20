@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+    <input type="checkbox" id="theme-toggle" class="theme-toggle">
     <header>
         <p class="site-name"><a href="index.html">Campus Events Guide</a></p>
         <nav aria-label="Main">
@@ -18,9 +19,67 @@
                 <li><a href="registration.html">Registration</a></li>
             </ul>
         </nav>
+        <label for="theme-toggle" class="theme-label">Dark mode</label>
     </header>
-    <main>
-        <h1>Welcome to the Campus Events Guide!</h1>
+        <main>
+        <section class="hero">
+            <h1>Welcome to the Campus Events Guide</h1>
+            <p>Find out what is happening on campus, check the timetable, and register in a few minutes.</p>
+            <a class="btn" href="events.html">Browse all events</a>
+        </section>
+
+        <section aria-labelledby="featured-heading">
+            <h2 id="featured-heading">Featured events</h2>
+            <div class="card-grid">
+                <article class="card">
+                    <img src="assets/images/hack-day-poster.svg" alt="Poster for Campus Hack Day 2026 showing the date and venue on a teal background">
+                    <div class="card-body">
+                        <p class="tag">Technology</p>
+                        <h3><a href="event-details.html">Campus Hack Day 2026</a></h3>
+                        <ul class="event-meta">
+                            <li><time datetime="2026-11-14">Saturday, 14 November 2026</time></li>
+                            <li>Innovation Hall, Main Campus</li>
+                        </ul>
+                        <a class="btn" href="event-details.html">View details</a>
+                    </div>
+                </article>
+
+                <article class="card">
+                    <img src="assets/images/cyber-talk-poster.svg" alt="Poster for Cybersecurity Talk Night on a teal background">
+                    <div class="card-body">
+                        <p class="tag">Talk</p>
+                        <h3><a href="events.html#cyber-talk">Cybersecurity Talk Night</a></h3>
+                        <ul class="event-meta">
+                            <li><time datetime="2026-11-26">Thursday, 26 November 2026</time></li>
+                            <li>Lecture Hall B2</li>
+                        </ul>
+                        <a class="btn" href="events.html#cyber-talk">See in catalogue</a>
+                    </div>
+                </article>
+
+                <article class="card">
+                    <img src="assets/images/career-fair-poster.svg" alt="Poster for Career Fair 2026 on a teal background">
+                    <div class="card-body">
+                        <p class="tag">Career</p>
+                        <h3><a href="events.html#career-fair">Career Fair 2026</a></h3>
+                        <ul class="event-meta">
+                            <li><time datetime="2026-12-02">Wednesday, 2 December 2026</time></li>
+                            <li>Main Courtyard</li>
+                        </ul>
+                        <a class="btn" href="events.html#career-fair">See in catalogue</a>
+                    </div>
+                </article>
+            </div>
+        </section>
+
+        <section aria-labelledby="how-heading">
+            <h2 id="how-heading">How it works</h2>
+            <ol>
+                <li>Browse the catalogue and pick an event.</li>
+                <li>Read the details and check the schedule.</li>
+                <li>Fill in the registration form.</li>
+            </ol>
+        </section>
     </main>
 
     <footer>

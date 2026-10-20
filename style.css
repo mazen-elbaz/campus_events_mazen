@@ -1,0 +1,437 @@
+/* ===== 1. Colour palette: every colour comes from a variable ===== */
+:root {
+    --bg: #f4f6f1;
+    --surface: #ffffff;
+    --text: #16211c;
+    --muted: #4f5d56;
+    --accent: #0b6e6e;
+    --on-accent: #ffffff;
+    --highlight: #f2c14e;
+    --on-highlight: #2b2000;
+    --border: #cfd8d2;
+    --error: #b3261e;
+    /* side padding that keeps content max 72rem wide and centred */
+    --page-pad: max(1rem, calc((100% - 72rem) / 2));
+    color-scheme: light;
+}
+
+/* ===== 2. Dark mode, CSS only =====
+   The hidden checkbox #theme-toggle sits at the top of <body>.
+   When it is checked, :has() matches the <html> element and we
+   redefine the same variables with dark values. Nothing else changes,
+   because every rule below reads these variables. The state is not
+   remembered when you open another page (no JavaScript, no storage). */
+:root:has(#theme-toggle:checked) {
+    --bg: #0e1815;
+    --surface: #17261f;
+    --text: #e9f1ec;
+    --muted: #a7b8af;
+    --accent: #5fd0c4;
+    --on-accent: #0e1815;
+    --border: #2b4136;
+    --error: #ff8a80;
+    color-scheme: dark;
+}
+
+/* ===== 3. Base styles ===== */
+*, *::before, *::after {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: "Segoe UI", system-ui, sans-serif;
+    line-height: 1.6;
+    background: var(--bg);
+    color: var(--text);
+}
+
+h1, h2, h3, .site-name {
+    font-family: Georgia, "Times New Roman", serif;
+    line-height: 1.25;
+}
+
+h1 { margin: 0 0 .5rem; font-size: clamp(1.75rem, 5vw, 2.5rem); }
+h2 { margin: 2rem 0 1rem; font-size: 1.5rem; }
+h3 { font-size: 1.2rem; }
+
+img, video {
+    display: block;
+    max-width: 100%;
+    height: auto;
+}
+
+a {
+    color: var(--accent);
+    transition: color .2s ease;
+}
+
+:focus-visible {
+    outline: 3px solid var(--accent);
+    outline-offset: 2px;
+}
+
+/* the checkbox must stay focusable, so it is only made invisible */
+.theme-toggle {
+    position: absolute;
+    opacity: 0;
+    width: 1px;
+    height: 1px;
+}
+
+/* ===== 4. Page shell with Flexbox ===== */
+header, main, footer {
+    padding-inline: var(--page-pad);
+}
+
+header {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: .75rem 1rem;
+    padding-block: .75rem;
+    background: var(--surface);
+    border-bottom: 1px solid var(--border);
+}
+
+.site-name { margin: 0; font-size: 1.3rem; font-weight: 700; }
+.site-name a { color: var(--text); text-decoration: none; }
+
+/* Responsive navigation: on phones and tablets the nav drops to its own
+   full-width row under the logo; links wrap if they do not fit.
+   The wide-screen version is in the media query at the end. */
+nav {
+    order: 3;
+    flex-basis: 100%;
+}
+
+nav ul {
+    display: flex;
+    flex-wrap: wrap;
+    gap: .25rem;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+/* complex selector: element + element + element + pseudo-class */
+nav ul li a:hover,
+nav ul li a[aria-current="page"] {
+    background: var(--accent);
+    color: var(--on-accent);
+}
+
+nav ul li a {
+    display: block;
+    padding: .6rem .9rem;
+    border-radius: 4px;
+    color: var(--text);
+    text-decoration: none;
+    transition: background-color .2s ease, color .2s ease;
+}
+
+.theme-label {
+    margin: 0;
+    padding: .4rem .9rem;
+    border: 2px solid var(--accent);
+    border-radius: 999px;
+    color: var(--accent);
+    font-weight: 700;
+    cursor: pointer;
+    transition: background-color .2s ease, color .2s ease;
+}
+
+.theme-label:hover,
+:root:has(#theme-toggle:checked) .theme-label {
+    background: var(--accent);
+    color: var(--on-accent);
+}
+
+/* show keyboard focus on the label when the hidden checkbox has focus */
+:root:has(#theme-toggle:focus-visible) .theme-label {
+    outline: 3px solid var(--accent);
+    outline-offset: 3px;
+}
+
+main { padding-block: 2rem 3rem; }
+
+footer {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    padding-block: 1.5rem;
+    background: var(--surface);
+    border-top: 1px solid var(--border);
+    color: var(--muted);
+}
+
+footer p { margin: 0; }
+
+footer ul {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+/* ===== 5. Buttons, cards and panels ===== */
+.btn {
+    display: inline-block;
+    padding: .65rem 1.25rem;
+    border: 2px solid var(--accent);
+    border-radius: 4px;
+    background: var(--accent);
+    color: var(--on-accent);
+    font: inherit;
+    font-weight: 700;
+    text-decoration: none;
+    cursor: pointer;
+    transition: background-color .2s ease, color .2s ease;
+}
+
+.btn:hover {
+    background: transparent;
+    color: var(--accent);
+}
+
+.btn-secondary {
+    background: transparent;
+    color: var(--accent);
+}
+
+.btn-secondary:hover {
+    background: var(--accent);
+    color: var(--on-accent);
+}
+
+.hero,
+.panel {
+    margin-bottom: 1rem;
+    padding: 1.5rem;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+}
+
+/* Grid: one column on phones, more columns in the media queries */
+.card-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    gap: 1.5rem;
+}
+
+.card {
+    overflow: hidden;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    transition: transform .2s ease, box-shadow .2s ease;
+}
+
+.card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 20px rgb(0 0 0 / .18);
+}
+
+.card img {
+    width: 100%;
+    aspect-ratio: 4 / 3;
+    object-fit: cover;
+}
+
+.card.past img { filter: grayscale(.7); }
+
+.card-body { padding: 1rem 1.25rem 1.25rem; }
+.card h3 { margin: .5rem 0; }
+.card h3 a { color: var(--text); text-decoration: none; }
+.card:hover h3 a { color: var(--accent); }
+
+.tag {
+    display: inline-block;
+    margin: 0;
+    padding: .1rem .6rem;
+    border-radius: 3px;
+    background: var(--highlight);
+    color: var(--on-highlight);
+    font-size: .85rem;
+    font-weight: 700;
+}
+
+.event-meta {
+    margin: 0 0 1rem;
+    padding: 0;
+    list-style: none;
+    color: var(--muted);
+}
+
+.event-overview {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    gap: 1.5rem;
+}
+
+.event-overview img { width: 100%; border-radius: 6px; }
+
+.agenda { padding-left: 1.25rem; }
+.agenda li { margin-bottom: .4rem; }
+.agenda time { font-weight: 700; }
+
+dl {
+    display: grid;
+    grid-template-columns: max-content minmax(0, 1fr);
+    gap: .5rem 1.5rem;
+}
+
+dt { font-weight: 700; }
+dd { margin: 0; }
+
+video {
+    width: 100%;
+    border-radius: 6px;
+    background: #000;
+}
+
+address { font-style: normal; }
+
+/* ===== 6. Table ===== */
+.table-wrap {
+    overflow-x: auto;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+}
+
+table {
+    width: 100%;
+    min-width: 36rem;
+    border-collapse: collapse;
+}
+
+caption {
+    padding: .75rem 1rem;
+    text-align: left;
+    font-weight: 700;
+}
+
+th, td {
+    padding: .75rem 1rem;
+    text-align: left;
+    border-bottom: 1px solid var(--border);
+}
+
+thead th {
+    background: var(--accent);
+    color: var(--on-accent);
+}
+
+tbody tr { transition: background-color .2s ease; }
+tbody tr:hover { background: var(--bg); }
+tr.featured-row { background: var(--bg); font-weight: 700; }
+
+/* ===== 7. Forms ===== */
+form { display: grid; gap: 1.25rem; }
+
+fieldset {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    gap: 1rem;
+    margin: 0;
+    padding: 1rem 1.25rem 1.25rem;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+}
+
+legend { padding-inline: .5rem; font-weight: 700; }
+
+form label {
+    display: block;
+    margin-bottom: .25rem;
+    font-weight: 600;
+}
+
+/* complex selector: every text-like control, not the special ones */
+input:not([type="checkbox"]):not([type="radio"]):not([type="color"]):not([type="range"]),
+select,
+textarea {
+    width: 100%;
+    padding: .6rem .75rem;
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    background: var(--bg);
+    color: var(--text);
+    font: inherit;
+    transition: border-color .2s ease;
+}
+
+:is(input, select, textarea):focus { border-color: var(--accent); }
+
+/* shown only after the user has interacted with the field */
+:is(input, select, textarea):user-invalid { border-color: var(--error); }
+
+input[type="range"] { width: 100%; accent-color: var(--accent); }
+
+input[type="color"] {
+    width: 4rem;
+    height: 2.5rem;
+    padding: 0;
+    border: 1px solid var(--border);
+    background: transparent;
+}
+
+/* radio and checkbox groups use Flexbox */
+.choice-group {
+    display: flex;
+    flex-wrap: wrap;
+    gap: .5rem 1.5rem;
+    padding: 0;
+    border: 0;
+    background: transparent;
+}
+
+.choice {
+    display: flex;
+    align-items: center;
+    gap: .5rem;
+    margin: 0;
+    font-weight: 400;
+}
+
+.choice input {
+    width: 1.1rem;
+    height: 1.1rem;
+    accent-color: var(--accent);
+}
+
+.form-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: .75rem;
+}
+
+/* ===== 8. Responsive layout (mobile-first) ===== */
+
+/* tablet, about 768px and up */
+@media (min-width: 48rem) {
+    main { padding-block: 3rem 4rem; }
+
+    .card-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .event-overview { grid-template-columns: repeat(2, minmax(0, 1fr)); align-items: start; }
+
+    fieldset { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    legend, .full { grid-column: 1 / -1; }
+}
+
+/* wide screens: nav sits in the header row, 3 cards per row */
+@media (min-width: 62rem) {
+    nav { order: 0; flex-basis: auto; }
+}
+
+@media (min-width: 70rem) {
+    .card-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+}
